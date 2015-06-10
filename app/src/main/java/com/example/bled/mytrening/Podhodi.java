@@ -9,11 +9,11 @@ public class Podhodi {
     private Integer id_upragnenie;
     private Integer id_trenirovka;
     private Integer kol_povtoren;
-    private Time vremja_vipolnenija;
+    private Integer vremja_vipolnenija;
 
     Podhodi(){}
 
-    public Podhodi(Integer id_podhod, Integer id_upragnenie, Integer id_trenirovka, Integer kol_povtoren, Time vremja_vipolnenija){
+    public Podhodi(Integer id_podhod, Integer id_upragnenie, Integer id_trenirovka, Integer kol_povtoren, int vremja_vipolnenija){
         this.id_podhod = id_podhod;
         this.id_upragnenie = id_upragnenie;
         this.id_trenirovka = id_trenirovka;
@@ -53,11 +53,11 @@ public class Podhodi {
         this.kol_povtoren = kol_povtoren;
     }
 
-    public Time getVremja_vipolnenija(){
+    public Integer getVremja_vipolnenija(){
         return vremja_vipolnenija;
     }
 
-    public void setVremja_vipolnenija(Time vremja_vipolnenija){
+    public void setVremja_vipolnenija(Integer vremja_vipolnenija){
         this.vremja_vipolnenija = vremja_vipolnenija;
     }
 }

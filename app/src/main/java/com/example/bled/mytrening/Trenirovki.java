@@ -8,12 +8,12 @@ public class Trenirovki {
     private Integer id_trenirovka;
     private Integer id_programma;
     private Integer id_den_programmi;
-    private Date data_trenirovki;
-    private Time vremja_vipolnenija;
+    private Integer data_trenirovki;
+    private Integer vremja_vipolnenija;
 
     Trenirovki(){}
 
-    public Trenirovki(Integer id_trenirovka,Integer id_programma, Integer id_den_programmi, Date data_trenirovki, Time vremja_vipolnenija){
+    public Trenirovki(Integer id_trenirovka,Integer id_programma, Integer id_den_programmi, int data_trenirovki, int vremja_vipolnenija){
         this.id_trenirovka = id_trenirovka;
         this.id_programma = id_programma;
         this.id_den_programmi = id_den_programmi;
@@ -46,19 +46,19 @@ public class Trenirovki {
         this.id_den_programmi = id_den_programmi;
     }
 
-    public Date getData_trenirovki(){
+    public Integer getData_trenirovki(){
         return data_trenirovki;
     }
 
-    public void setData_trenirovki(Date data_trenirovki){
+    public void setData_trenirovki(Integer data_trenirovki){
         this.data_trenirovki = data_trenirovki;
     }
 
-    public Time getVremja_vipolnenija(){
+    public Integer getVremja_vipolnenija(){
         return vremja_vipolnenija;
     }
 
-    public void setVremja_vipolnenija(Time vremja_vipolnenija){
+    public void setVremja_vipolnenija(Integer vremja_vipolnenija){
         this.vremja_vipolnenija = vremja_vipolnenija;
     }
 }
