@@ -12,20 +12,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
+import com.example.bled.mytrening.DniProgrammi;
+import com.example.bled.mytrening.Podhodi;
+import com.example.bled.mytrening.Programmi;
+import com.example.bled.mytrening.Trenirovki;
+import com.example.bled.mytrening.Upragnenija;
+import com.example.bled.mytrening.UpragnenijaDnja;
+import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
 
-    final String LOG_TAG = "myLogs";
 
     Button programBtn;
     Button trainingBtn;
     Button statisticsBtn;
-    DBHelper dbHelper;
+    private static final String LOG_TAG = "my_tag";
+    Db db2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        db2 = new Db(this);
+
         programBtn = (Button) findViewById(R.id.button);
         trainingBtn = (Button) findViewById(R.id.button2);
         statisticsBtn = (Button) findViewById(R.id.button3);
@@ -56,6 +65,7 @@ public class MainActivity extends ActionBarActivity {
         programBtn.setOnClickListener(oclProgramBtn);
         trainingBtn.setOnClickListener(oclTrainingBtn);
         statisticsBtn.setOnClickListener(oclStatisticsBtn);
+        db2.close();
     }
 
 
@@ -80,26 +90,5 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    class DBHelper extends SQLiteOpenHelper {
 
-        public DBHelper(Context context) {
-            // конструктор суперкласса
-            super(context, "myDB", null, 1);
-        }
-
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-            Log.d(LOG_TAG, "--- onCreate database ---");
-            // создаем таблицу с полями
-            db.execSQL("create table mytable ("
-                    + "id integer primary key autoincrement,"
-                    + "name text,"
-                    + "email text" + ");");
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-        }
-    }
 }
