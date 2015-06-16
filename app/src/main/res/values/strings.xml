@@ -18,5 +18,6 @@
             <item>Чили</item>
             <item>Уругвай</item>
     </string-array>
+    <string name="title_activity_day">dayActivity</string>
 
 </resources>

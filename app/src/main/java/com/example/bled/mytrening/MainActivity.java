@@ -33,7 +33,6 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         programBtn = (Button) findViewById(R.id.button);
         trainingBtn = (Button) findViewById(R.id.button2);
         statisticsBtn = (Button) findViewById(R.id.button3);
@@ -65,7 +64,7 @@ public class MainActivity extends ActionBarActivity {
         programBtn.setOnClickListener(oclProgramBtn);
         trainingBtn.setOnClickListener(oclTrainingBtn);
         statisticsBtn.setOnClickListener(oclStatisticsBtn);
-        
+
     }
 
 

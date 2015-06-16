@@ -3,65 +3,60 @@ package com.example.bled.mytrening;
 import android.app.LauncherActivity;
 import android.content.ClipData;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+//import com.example.bled.mytrening.Aprogramm;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bled.mytrening.Db;
 import java.util.ArrayList;
 import java.util.List;
 
 import static android.app.LauncherActivity.*;
+import static com.example.bled.mytrening.R.layout.activity_program;
 
 
 public class program extends ActionBarActivity {
 
-    public String[] str2 = {"3435"};
+    public String[] str,str2;
     LinearLayout llMain;
-    Context context;
-    Db dbl;
-    MainActivity mAc;
+    int vtoroeMenu = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_program);
-
-        //dbl =  new Db(this);
-        mAc = new MainActivity();
-       // mAc.onCreate(savedInstanceState);
-        String str;
-        //List<Programmi> mProgList = mAc.db2.getmProgrammiList();
-
-        int i=0;
-        Resources res = getResources();
-
-        String[] stroki = res.getStringArray(R.array.stroki);
-/*
-        for (Programmi prog : mProgList){
-            str2[i] = prog.getNazvanie();
-            i++;
-        }*/
+        setContentView(activity_program);
+        //List<Book> books = Book.listAll(Book.class);
         llMain = (LinearLayout) findViewById(R.id.llMain);
         ListView list1 = (ListView) findViewById(R.id.lv1);
-//      llMain.addView(list1);
-str = "fdfdf";
-        TextView txt = (TextView) findViewById(R.id.textView7);
-        txt.setText(str);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, str2);
-
+        final Aprogramm aprog = new Aprogramm();
+        str = aprog.menuCreate();
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, str);
         list1.setAdapter(adapter);
 
-        ListView list2 = (ListView) findViewById(R.id.listView2);
-
-       // dbl.close();
+        list1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                TextView txt = (TextView) findViewById(R.id.textView7);
+                txt.setText("itemClick: position = " + position + ", id = " + id);
+                Intent intent;
+                intent = new Intent(program.this,dayActivity.class);
+                intent.putExtra("viborPunkta", position);
+                startActivity(intent);
+            }
+        });
     }
 
 
