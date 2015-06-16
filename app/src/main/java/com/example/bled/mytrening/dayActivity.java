@@ -7,11 +7,13 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class dayActivity extends ActionBarActivity {
     public String[] str;
     LinearLayout llMain;
     ListView list1;
+    TextView soobshenie;
     Integer viborPunkta;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +21,17 @@ public class dayActivity extends ActionBarActivity {
         setContentView(R.layout.activity_day);
         llMain = (LinearLayout) findViewById(R.id.llMain);
         list1 = (ListView) findViewById(R.id.lv1);
+        soobshenie = (TextView) findViewById(R.id.soobshenie);
         final Aprogramm aprog = new Aprogramm();
 
         viborPunkta = getIntent().getExtras().getInt("viborPunkta");
         viborPunkta++;
         str = aprog.menuDayCreate(viborPunkta);
+        if(str[0]==""){
+            soobshenie.setText("В данной программе нет дней. Добавьте!!!");
+            list1.setFocusable(false);
+        }
+        list1.setFocusable(true);
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, str);
         list1.setAdapter(adapter);
     }

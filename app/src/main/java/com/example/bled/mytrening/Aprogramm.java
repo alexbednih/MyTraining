@@ -25,6 +25,8 @@ public class Aprogramm {
             days.save();
             days = new DniProgrammi("Tretii_2", progr);
             days.save();
+            progr = new Programmi("RTO");
+            progr.save();
         }
         List<Programmi> progs = Programmi.listAll(Programmi.class);
 
@@ -40,11 +42,19 @@ public class Aprogramm {
     public String[] menuDayCreate(Integer i){
         //List<Book> books = Book.find(Book.class, "author = ?", new String{author.getId()});
         List<DniProgrammi> days = DniProgrammi.find(DniProgrammi.class, "programma = ?", String.valueOf(i));
-        str2 = new String[days.size()];
         int y = 0;
-        for (DniProgrammi day : days){
-            str2[y] = day.nazvanie;
-            y++;
+
+        if (days.size()!=0) {
+            str2 = new String[days.size()];
+            for (DniProgrammi day : days) {
+                str2[y] = day.nazvanie;
+                y++;
+            }
+        }
+        else
+        {
+            str2 = new String[1];
+            str2[y] = "";
         }
         return str2;
     }
