@@ -7,13 +7,13 @@ public class DniProgrammi extends SugarRecord<DniProgrammi>{
 
 
     String nazvanie;
-    Programmi id_programma;
+    Programmi programma;
 
-    DniProgrammi(){}
+    public DniProgrammi(){}
 
-    public DniProgrammi(String nazvanie, Programmi id_programma){
+    public DniProgrammi(String nazvanie, Programmi programma){
         this.nazvanie = nazvanie;
-        this.id_programma = id_programma;
+        this.programma = programma;
     }
 
 }

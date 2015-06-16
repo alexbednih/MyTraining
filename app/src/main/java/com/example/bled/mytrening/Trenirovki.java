@@ -1,64 +1,26 @@
 package com.example.bled.mytrening;
 
+import com.orm.SugarRecord;
+
 import java.sql.Time;
 import java.util.Date;
 
-public class Trenirovki {
+public class Trenirovki extends SugarRecord<Trenirovki>{
 
-    private Integer id_trenirovka;
-    private Integer id_programma;
-    private Integer id_den_programmi;
-    private Integer data_trenirovki;
-    private Integer vremja_vipolnenija;
 
-    Trenirovki(){}
+    Programmi programma;
+    DniProgrammi den_programmi;
+    Integer data_trenirovki;
+    Integer vremja_vipolnenija;
 
-    public Trenirovki(Integer id_trenirovka,Integer id_programma, Integer id_den_programmi, int data_trenirovki, int vremja_vipolnenija){
-        this.id_trenirovka = id_trenirovka;
-        this.id_programma = id_programma;
-        this.id_den_programmi = id_den_programmi;
+    public Trenirovki(){}
+
+    public Trenirovki(Programmi programma, DniProgrammi den_programmi, int data_trenirovki, int vremja_vipolnenija){
+
+        this.programma = programma;
+        this.den_programmi = den_programmi;
         this.data_trenirovki = data_trenirovki;
         this.vremja_vipolnenija = vremja_vipolnenija;
     }
-    public Integer getId_trenirovka() {
-        return id_trenirovka;
-    }
 
-    public void setId_trenirovka(Integer id_trenirovka) {
-        this.id_trenirovka = id_trenirovka;
-    }
-
-    public Integer getId_programma(){
-
-        return id_programma;
-    }
-
-    public void setId_programma(Integer id_programma){
-
-        this.id_programma = id_programma;
-    }
-
-    public Integer getId_den_programmi() {
-        return id_den_programmi;
-    }
-
-    public void setId_den_programmi(Integer id_den_programmi) {
-        this.id_den_programmi = id_den_programmi;
-    }
-
-    public Integer getData_trenirovki(){
-        return data_trenirovki;
-    }
-
-    public void setData_trenirovki(Integer data_trenirovki){
-        this.data_trenirovki = data_trenirovki;
-    }
-
-    public Integer getVremja_vipolnenija(){
-        return vremja_vipolnenija;
-    }
-
-    public void setVremja_vipolnenija(Integer vremja_vipolnenija){
-        this.vremja_vipolnenija = vremja_vipolnenija;
-    }
 }

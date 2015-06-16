@@ -27,18 +27,12 @@ public class MainActivity extends ActionBarActivity {
     Button programBtn;
     Button trainingBtn;
     Button statisticsBtn;
-    private static final String LOG_TAG = "my_tag";
-    public Db db2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String ctx="1";
 
-        Programmi prog = Programmi.findById(Programmi.class, (long) 10);
-Log.i(LOG_TAG,prog.nazvanie);
-        //Book book = Book.findById(Book.class, 1);
-        db2 = new Db(this);
 
         programBtn = (Button) findViewById(R.id.button);
         trainingBtn = (Button) findViewById(R.id.button2);
@@ -71,7 +65,7 @@ Log.i(LOG_TAG,prog.nazvanie);
         programBtn.setOnClickListener(oclProgramBtn);
         trainingBtn.setOnClickListener(oclTrainingBtn);
         statisticsBtn.setOnClickListener(oclStatisticsBtn);
-        db2.close();
+        
     }
 
 

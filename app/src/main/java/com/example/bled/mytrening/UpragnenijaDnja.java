@@ -1,32 +1,19 @@
 package com.example.bled.mytrening;
 
 
-public class UpragnenijaDnja {
+import com.orm.SugarRecord;
 
-    private Integer id_upragnenie;
-    private Integer id_den_programmi;
+public class UpragnenijaDnja extends SugarRecord<UpragnenijaDnja>{
 
-    UpragnenijaDnja(int anInt, int cursorInt, int i){}
+    Upragnenija upragnenie;
+    DniProgrammi den_programmi;
 
-    public UpragnenijaDnja(Integer id_upragnenie, Integer id_den_programmi){
-        this.id_upragnenie = id_upragnenie;
-        this.id_den_programmi = id_den_programmi;
+    public UpragnenijaDnja(){}
+
+    public UpragnenijaDnja(Upragnenija upragnenie, DniProgrammi den_programmi){
+        this.upragnenie = upragnenie;
+        this.den_programmi = den_programmi;
     }
 
-    public Integer getId_upragnenie(){
-        return id_upragnenie;
-    }
-
-    public void setId_upragnenie(Integer id_upragnenie){
-        this.id_upragnenie = id_upragnenie;
-    }
-
-    public Integer getId_den_programmi() {
-        return id_den_programmi;
-    }
-
-    public void setId_den_programmi(Integer id_den_programmi) {
-        this.id_den_programmi = id_den_programmi;
-    }
 
 }
