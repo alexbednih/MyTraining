@@ -12,6 +12,7 @@ import com.example.bled.mytrening.UpragnenijaDnja;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -166,22 +167,28 @@ public class Db {
 
         cursor.close();
 
+
+
         return mUpragnenijaList;
+
 
     }
 
+
     public List<UpragnenijaDnja> getmUpragnenijaDnjaList() {
-        cursor = db1.query(DbHelper.TABLE_UPRAGNENIJA, null, null, null, null, null, null);
+        cursor = db1.query(DbHelper.TABLE_UPRAGNENIJA_DNJA, null, null, null, null, null, null);
         mUpragnenijaDnjaList = new ArrayList<UpragnenijaDnja>();
 
         if (cursor.moveToFirst()) {
 
+            int id_upragnenie_dnjaColInd = cursor.getColumnIndex(DbHelper.KEY_ID_UPRAGNENIJA_DNJA);
             int id_upragnenieColInd = cursor.getColumnIndex(DbHelper.KEY_ID_UPRAGNENIJA_UPRAGNENIJA_DNJA);
             int id_den_programmiColInd = cursor.getColumnIndex(DbHelper.KEY_ID_DNI_PROGRAMMI_UPRAGNENIJA_DNJA);
 
 
             do {
-                UpragnenijaDnja upragnenijaDnja = new UpragnenijaDnja(cursor.getInt(id_upragnenieColInd),
+                UpragnenijaDnja upragnenijaDnja = new UpragnenijaDnja(cursor.getInt(id_upragnenie_dnjaColInd),
+                        cursor.getInt(id_upragnenieColInd),
                         cursor.getInt(id_den_programmiColInd));
                 mUpragnenijaDnjaList.add(upragnenijaDnja);
             } while (cursor.moveToNext());

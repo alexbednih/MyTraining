@@ -11,5 +11,12 @@
     <string name="title_activity_program">Программы</string>
     <string name="title_activity_training">Тренировки</string>
     <string name="title_activity_statistics">Статистика</string>
+    <string-array name="stroki">
+            <item>Бразилия</item>
+            <item>Аргентина</item>
+            <item>Колумбия</item>
+            <item>Чили</item>
+            <item>Уругвай</item>
+    </string-array>
 
 </resources>

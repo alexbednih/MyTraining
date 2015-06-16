@@ -27,7 +27,7 @@ public class MainActivity extends ActionBarActivity {
     Button trainingBtn;
     Button statisticsBtn;
     private static final String LOG_TAG = "my_tag";
-    Db db2;
+    public Db db2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +41,7 @@ public class MainActivity extends ActionBarActivity {
         final View.OnClickListener oclProgramBtn = new View.OnClickListener(){
             @Override
             public void onClick(View v){
+
                 Intent intent;
                 intent = new Intent(MainActivity.this,program.class);
                 startActivity(intent);

@@ -38,6 +38,7 @@ public class DbHelper extends SQLiteOpenHelper{
     public static final String KEY_VREMJA_PODHODI = "vremja_vipolnenija";
 
     public static final String TABLE_UPRAGNENIJA_DNJA = "tUpragnenijaDnja";
+    public static final String KEY_ID_UPRAGNENIJA_DNJA = "id_upragnenie_dnja";
     public static final String KEY_ID_UPRAGNENIJA_UPRAGNENIJA_DNJA = "id_upragnenie";
     public static final String KEY_ID_DNI_PROGRAMMI_UPRAGNENIJA_DNJA = "id_den_programmi";
 
@@ -79,7 +80,8 @@ public class DbHelper extends SQLiteOpenHelper{
                 "FOREIGN KEY(id_upragnenie) REFERENCES tUpragnenija(id_upragnenie)," +
                 "FOREIGN KEY(id_trenirovka) REFERENCES tTrenirovki(id_trenirovka));");
         db.execSQL("create table tUpragnenijaDnja " +
-                "(id_upragnenie integer," +
+                "(id_upragnenie_dnja integer primary key autoincrement," +
+                "id_upragnenie integer," +
                 "id_den_programmi integer," +
                 "FOREIGN KEY(id_upragnenie) REFERENCES tUpragnenija(id_upragnenie)," +
                 "FOREIGN KEY(id_den_programmi) REFERENCES tDniProgrammi(id_den_programmi));");
@@ -89,6 +91,17 @@ public class DbHelper extends SQLiteOpenHelper{
 
         cv.put(KEY_NAZVANIE_UPRAGNENIJA, "Подтягивания");
         db.insert(TABLE_UPRAGNENIJA, null, cv);
+
+        cv.put(KEY_NAZVANIE_PROGRAMMI, "ГТО");
+        db.insert(TABLE_PROGRAMMI, null, cv);
+
+        cv.put(KEY_NAZVANIE_DNI_PROGRAMMI, "Основной день");
+        cv.put(KEY_ID_PROGRAMMI_DNI_PROGRAMMI, 1);
+        db.insert(TABLE_DNI_PROGRAMMI, null, cv);
+
+        cv.put(KEY_ID_UPRAGNENIJA_UPRAGNENIJA_DNJA, 1);
+        cv.put(KEY_ID_DNI_PROGRAMMI_UPRAGNENIJA_DNJA, 1);
+        db.insert(TABLE_UPRAGNENIJA_DNJA, null, cv);
     }
 
     @Override

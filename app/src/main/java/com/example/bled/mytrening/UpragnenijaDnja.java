@@ -6,7 +6,7 @@ public class UpragnenijaDnja {
     private Integer id_upragnenie;
     private Integer id_den_programmi;
 
-    UpragnenijaDnja(){}
+    UpragnenijaDnja(int anInt, int cursorInt, int i){}
 
     public UpragnenijaDnja(Integer id_upragnenie, Integer id_den_programmi){
         this.id_upragnenie = id_upragnenie;
