@@ -23,7 +23,7 @@ import static android.app.LauncherActivity.*;
 
 public class program extends ActionBarActivity {
 
-    public String [] str2 = {"3435"};
+    public String[] str2 = {"3435"};
     LinearLayout llMain;
     Context context;
     Db dbl;
@@ -36,25 +36,26 @@ public class program extends ActionBarActivity {
 
         //dbl =  new Db(this);
         mAc = new MainActivity();
+       // mAc.onCreate(savedInstanceState);
         String str;
-//        List<Programmi> mProgList = mAc.db2.getmProgrammiList();
+        //List<Programmi> mProgList = mAc.db2.getmProgrammiList();
 
         int i=0;
         Resources res = getResources();
 
         String[] stroki = res.getStringArray(R.array.stroki);
-
-  //      for (Programmi prog : mProgList){
-    //        str2[i]=prog.getNazvanie();
-      //      i++;
-        //}
+/*
+        for (Programmi prog : mProgList){
+            str2[i] = prog.getNazvanie();
+            i++;
+        }*/
         llMain = (LinearLayout) findViewById(R.id.llMain);
         ListView list1 = (ListView) findViewById(R.id.lv1);
 //      llMain.addView(list1);
 str = "fdfdf";
         TextView txt = (TextView) findViewById(R.id.textView7);
         txt.setText(str);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stroki);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, str2);
 
         list1.setAdapter(adapter);
 

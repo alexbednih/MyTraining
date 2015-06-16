@@ -35,6 +35,7 @@ public class Db {
         db1 = dbHelper.getWritableDatabase();
     }
     //Формирование списков записей таблиц
+/*
     public List<DniProgrammi> getmDniProgrammiList() {
         cursor = db1.query(DbHelper.TABLE_DNI_PROGRAMMI, null, null, null, null, null, null);
         mDniProgrammiList = new ArrayList<DniProgrammi>();
@@ -60,6 +61,7 @@ public class Db {
         return mDniProgrammiList;
 
     }
+*/
 
     public List<Podhodi> getmPodhodoiList() {
         cursor = db1.query(DbHelper.TABLE_PODHODI, null, null, null, null, null, null);
@@ -90,7 +92,7 @@ public class Db {
 
     }
 
-    public List<Programmi> getmProgrammiList() {
+/*    public List<Programmi> getmProgrammiList() {
         cursor = db1.query(DbHelper.TABLE_PROGRAMMI, null, null, null, null, null, null);
         mProgrammiList = new ArrayList<Programmi>();
 
@@ -114,7 +116,7 @@ public class Db {
 
         return mProgrammiList;
 
-    }
+    }*/
 
     public List<Trenirovki> getmTrenirovkiList() {
         cursor = db1.query(DbHelper.TABLE_TRENIROVKI, null, null, null, null, null, null);
@@ -145,7 +147,7 @@ public class Db {
 
     }
 
-    public List<Upragnenija> getmUpragnenijaList() {
+/*    public List<Upragnenija> getmUpragnenijaList() {
         cursor = db1.query(DbHelper.TABLE_UPRAGNENIJA, null, null, null, null, null, null);
         mUpragnenijaList = new ArrayList<Upragnenija>();
 
@@ -172,7 +174,7 @@ public class Db {
         return mUpragnenijaList;
 
 
-    }
+    }*/
 
 
     public List<UpragnenijaDnja> getmUpragnenijaDnjaList() {

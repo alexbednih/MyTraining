@@ -19,6 +19,7 @@ import com.example.bled.mytrening.Trenirovki;
 import com.example.bled.mytrening.Upragnenija;
 import com.example.bled.mytrening.UpragnenijaDnja;
 import java.util.List;
+import com.orm.SugarRecord;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -32,7 +33,11 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String ctx="1";
 
+        Programmi prog = Programmi.findById(Programmi.class, (long) 10);
+Log.i(LOG_TAG,prog.nazvanie);
+        //Book book = Book.findById(Book.class, 1);
         db2 = new Db(this);
 
         programBtn = (Button) findViewById(R.id.button);

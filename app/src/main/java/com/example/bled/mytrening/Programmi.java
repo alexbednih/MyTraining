@@ -1,34 +1,18 @@
 package com.example.bled.mytrening;
 
 
-public class Programmi {
+import com.orm.SugarRecord;
 
-    private Integer id_programma;
-    private String nazvanie;
+public class Programmi extends SugarRecord<Programmi> {
 
-    Programmi(){}
 
-    public Programmi(Integer id_programma, String nazvanie){
-        this.id_programma = id_programma;
+    String nazvanie;
+
+    public Programmi(){}
+
+    public Programmi(String nazvanie){
+
         this.nazvanie = nazvanie;
     }
 
-    public Integer getId_programma(){
-
-        return id_programma;
-    }
-
-    public void setId_programma(Integer id_programma){
-
-        this.id_programma = id_programma;
-    }
-
-    public String getNazvanie(){
-
-        return nazvanie;
-    }
-
-    public void setNazvanie(String nazvanie){
-        this.nazvanie = nazvanie;
-    }
 }
