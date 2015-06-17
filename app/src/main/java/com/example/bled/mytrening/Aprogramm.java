@@ -8,6 +8,7 @@ import java.util.List;
 public class Aprogramm {
     public String[] str;
     public String[] str2;
+    public String[] str3;
     public String[] menuCreate(){
         List<Programmi> proga = Programmi.listAll(Programmi.class);
         if (proga.size() == 0){
@@ -83,5 +84,28 @@ public class Aprogramm {
             str2[y] = "";
         }
         return str2;
+    }
+// Доделай эту процедуру правильно
+    public String[] spisokUprDayCreate(Integer i){
+        //List<Book> books = Book.find(Book.class, "author = ?", new String{author.getId()});
+        List<UpragnenijaDnja> uprDays = UpragnenijaDnja.find(UpragnenijaDnja.class, "denprogrammi = ?", String.valueOf(i));
+        //str3 = new String[1];
+        int y = 0;
+        //str3[y]=i.toString();
+
+        if (uprDays.size()!=0) {
+            str3 = new String[uprDays.size()];
+            for (UpragnenijaDnja uprDay : uprDays) {
+                str3[y] = uprDay.upragnenie.nazvanie;
+                y++;
+            }
+        }
+        else
+        {
+            str3 = new String[1];
+            str3[y] = "";
+        }
+
+        return str3;
     }
 }

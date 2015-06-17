@@ -25,6 +25,8 @@ public class dayActivity extends ActionBarActivity {
     Button btnDialog;
     public Integer viborPunkta;
     Editable value;
+    public static int perem=0;
+    public static int vibor=0;
     final Aprogramm aprog = new Aprogramm();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +77,15 @@ public class dayActivity extends ActionBarActivity {
     }
 
     public void formirSpiska(){
+        if (program.perem==1){
+            viborPunkta=program.vibor;
+            program.perem=0;
+        }
         if (program.perem==0) {
             viborPunkta = getIntent().getExtras().getInt("viborPunkta");
             program.perem=1;
         }
-        if (program.perem==1){
-            viborPunkta=program.vibor;
-        }
+
 
         viborPunkta++;
         str = aprog.menuDayCreate(viborPunkta);
