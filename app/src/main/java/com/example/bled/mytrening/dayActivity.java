@@ -1,13 +1,18 @@
 package com.example.bled.mytrening;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,8 +22,9 @@ public class dayActivity extends ActionBarActivity {
     LinearLayout llMain;
     public ListView list1;
     public TextView soobshenie;
+    Button btnDialog;
     public Integer viborPunkta;
-    public Integer peremennajaVozvrata=0;
+    Editable value;
     final Aprogramm aprog = new Aprogramm();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +33,48 @@ public class dayActivity extends ActionBarActivity {
         llMain = (LinearLayout) findViewById(R.id.llMain);
         list1 = (ListView) findViewById(R.id.lv1);
         soobshenie = (TextView) findViewById(R.id.soobshenie);
+        btnDialog = (Button) findViewById(R.id.btnDialog);
+        final View.OnClickListener oclbtnDialog = new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                final AlertDialog.Builder alert = new AlertDialog.Builder(dayActivity.this);
 
+                alert.setTitle("Добавление нового дня программы");
+                alert.setMessage("Введите название нового дня программы");
+                final EditText input = new EditText(dayActivity.this);
+                alert.setView(input);
+                alert.setPositiveButton("ОК", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        value = input.getText();
+                        aprog.addNewDayProgramm(value.toString(), program.vibor+1);
+                        formirSpiska();
+                    }
+                });
 
+                alert.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    }
+                });
+
+                alert.show();
+            }
+        };
+
+        formirSpiska();
+        list1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Intent intent;
+                intent = new Intent(dayActivity.this,uprDayActivity.class);
+                intent.putExtra("viborPunkta", position);
+                startActivity(intent);
+            }
+        });
+
+        btnDialog.setOnClickListener(oclbtnDialog);
+    }
+
+    public void formirSpiska(){
         if (program.perem==0) {
             viborPunkta = getIntent().getExtras().getInt("viborPunkta");
             program.perem=1;
@@ -49,28 +95,6 @@ public class dayActivity extends ActionBarActivity {
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, str);
         list1.setAdapter(adapter);
-
-        list1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Intent intent;
-                intent = new Intent(dayActivity.this,uprDayActivity.class);
-                intent.putExtra("viborPunkta", position);
-                startActivity(intent);
-            }
-        });
-    }
-
-    @Override
-    public void onStart() {
-super.onStart();
-
-    }
-
-    @Override
-    public void onStop(){
-        super.onStop();
-        peremennajaVozvrata=1;
     }
 
     @Override

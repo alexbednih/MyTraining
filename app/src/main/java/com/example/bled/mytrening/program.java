@@ -40,6 +40,7 @@ public class program extends ActionBarActivity {
     public static int perem=0;
     public static int vibor=0;
     LinearLayout llMain;
+    ListView list1;
     int vtoroeMenu = 0;
     final Aprogramm aprog = new Aprogramm();
     Editable value;
@@ -48,6 +49,8 @@ public class program extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(activity_program);
+        llMain = (LinearLayout) findViewById(R.id.llMain);
+        list1 = (ListView) findViewById(R.id.lv1);
         btnDialog = (Button) findViewById(R.id.btnDialog);
         final View.OnClickListener oclbtnDialog = new View.OnClickListener() {
             @Override
@@ -62,7 +65,7 @@ public class program extends ActionBarActivity {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         value = input.getText();
                         aprog.addNewProgramm(value.toString());
-                        str= aprog.menuCreate();
+                        formirSpiska();
                     }
                 });
 
@@ -74,19 +77,10 @@ public class program extends ActionBarActivity {
                 alert.show();
             }
         };
-        //List<Book> books = Book.listAll(Book.class);
-        llMain = (LinearLayout) findViewById(R.id.llMain);
-        ListView list1 = (ListView) findViewById(R.id.lv1);
-
-        str = aprog.menuCreate();
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, str);
-        list1.setAdapter(adapter);
-
+        formirSpiska();
         list1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                TextView txt = (TextView) findViewById(R.id.textView7);
-                txt.setText("itemClick: position = " + position + ", id = " + id);
                 Intent intent;
                 intent = new Intent(program.this,dayActivity.class);
                 intent.putExtra("viborPunkta", position);
@@ -97,6 +91,11 @@ public class program extends ActionBarActivity {
         btnDialog.setOnClickListener(oclbtnDialog);
     }
 
+    private void formirSpiska(){
+        str = aprog.menuCreate();
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, str);
+        list1.setAdapter(adapter);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

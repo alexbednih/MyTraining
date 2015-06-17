@@ -59,6 +59,12 @@ public class Aprogramm {
         progr.save();
     }
 
+    public void addNewDayProgramm(String stroka, Integer i){
+        Programmi progr = Programmi.findById(Programmi.class, (long) i);
+        DniProgrammi days = new DniProgrammi(stroka, progr);
+        days.save();
+    }
+
     public String[] menuDayCreate(Integer i){
         //List<Book> books = Book.find(Book.class, "author = ?", new String{author.getId()});
         List<DniProgrammi> days = DniProgrammi.find(DniProgrammi.class, "programma = ?", String.valueOf(i));
