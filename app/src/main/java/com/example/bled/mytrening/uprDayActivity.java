@@ -1,13 +1,20 @@
 package com.example.bled.mytrening;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class uprDayActivity extends ActionBarActivity {
 
@@ -15,7 +22,11 @@ public class uprDayActivity extends ActionBarActivity {
     public ListView list1;
     public Integer viborPunkta;
     public String[] str;
+    public String[] spisok;
     public TextView soobshenie;
+    Button btnAddUpr;
+    Editable value;
+    public Integer viborIzSpiska;
     final Aprogramm aprog = new Aprogramm();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +35,53 @@ public class uprDayActivity extends ActionBarActivity {
         llMain = (LinearLayout) findViewById(R.id.llMain);
         list1 = (ListView) findViewById(R.id.lv1);
         soobshenie = (TextView) findViewById(R.id.tv1);
+        btnAddUpr = (Button) findViewById(R.id.btnAddUpr);
+
+        final View.OnClickListener oclbtnAddUpr = new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v){
+                spisok = aprog.spisokUpragnenii();
+
+                final AlertDialog.Builder alert = new AlertDialog.Builder(uprDayActivity.this);
+
+                alert.setTitle("Добавление упражнения в программу");
+                alert.setMessage("Введите название упражнения программы");
+
+                final EditText input = new EditText(uprDayActivity.this);
+                alert.setView(input);
+                alert.setSingleChoiceItems(spisok, -1,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int item) {
+                                //viborIzSpiska=item;
+                            }
+                        });
+                alert.setPositiveButton("ОК", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        value = input.getText();
+                        aprog.addUprDnja(value.toString(), dayActivity.vibor+1, dayActivity.idProg + 1);
+                        formirSpiska();
+                    }
+                });
+                alert.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    }
+                });
+                //alert.create();
+                alert.show();
+            }
+        };
+
         formirSpiska();
+
+        btnAddUpr.setOnClickListener(oclbtnAddUpr);
     }
 
     public void formirSpiska(){
         if (dayActivity.perem==1){
             viborPunkta=dayActivity.vibor;
-            dayActivity.perem=0;
         }
         if (dayActivity.perem==0) {
             viborPunkta = getIntent().getExtras().getInt("viborPunkta");

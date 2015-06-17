@@ -28,6 +28,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/lv1" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Добавить упражнение"
+            android:id="@+id/btnAddUpr"
+            android:layout_gravity="center_horizontal|top" />
+
     </LinearLayout>
 
 </RelativeLayout>

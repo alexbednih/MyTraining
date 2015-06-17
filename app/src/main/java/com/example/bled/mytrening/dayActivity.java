@@ -82,7 +82,6 @@ public class dayActivity extends ActionBarActivity {
     public void formirSpiska(){
         if (program.perem==1){
             viborPunkta=program.vibor;
-            program.perem=0;
         }
         if (program.perem==0) {
             viborPunkta = getIntent().getExtras().getInt("viborPunkta");
