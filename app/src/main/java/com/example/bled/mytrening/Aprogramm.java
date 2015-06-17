@@ -75,8 +75,10 @@ public class Aprogramm {
             str2 = new String[days.size()];
             for (DniProgrammi day : days) {
                 str2[y] = day.nazvanie;
+
                 y++;
             }
+
         }
         else
         {
@@ -86,9 +88,19 @@ public class Aprogramm {
         return str2;
     }
 // Доделай эту процедуру правильно
-    public String[] spisokUprDayCreate(Integer i){
+    public String[] spisokUprDayCreate(Integer i, Integer j){
         //List<Book> books = Book.find(Book.class, "author = ?", new String{author.getId()});
-        List<UpragnenijaDnja> uprDays = UpragnenijaDnja.find(UpragnenijaDnja.class, "denprogrammi = ?", String.valueOf(i));
+        List<DniProgrammi> days = DniProgrammi.find(DniProgrammi.class, "programma = ?", String.valueOf(j));
+        int x=1;
+        Long idDnja = null;
+        for (DniProgrammi day : days) {
+            if(i==x){
+                idDnja=day.getId();
+            }
+            x++;
+        }
+
+        List<UpragnenijaDnja> uprDays = UpragnenijaDnja.find(UpragnenijaDnja.class, "denprogrammi = ?", String.valueOf(idDnja));
         //str3 = new String[1];
         int y = 0;
         //str3[y]=i.toString();

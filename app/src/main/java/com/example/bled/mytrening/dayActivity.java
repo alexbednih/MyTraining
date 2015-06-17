@@ -27,6 +27,7 @@ public class dayActivity extends ActionBarActivity {
     Editable value;
     public static int perem=0;
     public static int vibor=0;
+    public static int idProg=0;
     final Aprogramm aprog = new Aprogramm();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,8 @@ public class dayActivity extends ActionBarActivity {
                 Intent intent;
                 intent = new Intent(dayActivity.this,uprDayActivity.class);
                 intent.putExtra("viborPunkta", position);
+                vibor=position;
+                idProg=program.vibor;
                 startActivity(intent);
             }
         });

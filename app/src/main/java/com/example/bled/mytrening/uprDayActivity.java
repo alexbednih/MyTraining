@@ -39,7 +39,7 @@ public class uprDayActivity extends ActionBarActivity {
 
 
         viborPunkta++;
-        str = aprog.spisokUprDayCreate(viborPunkta);
+        str = aprog.spisokUprDayCreate(viborPunkta,dayActivity.idProg+1);
         soobshenie.setText("");
         if(str[0]==""){
             soobshenie.setText("В данной программе нет дней. Добавьте!!!");
