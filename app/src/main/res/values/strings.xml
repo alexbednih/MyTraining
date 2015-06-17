@@ -12,5 +12,6 @@
     <string name="title_activity_training">Тренировки</string>
     <string name="title_activity_statistics">Статистика</string>
     <string name="title_activity_day">Дни программы</string>
+    <string name="title_activity_upr_day">Упражнения дня</string>
 
 </resources>
