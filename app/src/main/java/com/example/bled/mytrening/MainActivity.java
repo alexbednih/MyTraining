@@ -32,7 +32,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Aprogramm aprog = new Aprogramm();
+        aprog.sozdanieBazi();
         programBtn = (Button) findViewById(R.id.button);
         trainingBtn = (Button) findViewById(R.id.button2);
         statisticsBtn = (Button) findViewById(R.id.button3);

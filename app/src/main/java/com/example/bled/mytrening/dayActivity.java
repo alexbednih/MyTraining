@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 public class dayActivity extends ActionBarActivity {
     public String[] str;
-    LinearLayout llMain;
     public ListView list1;
     public TextView soobshenie;
     Button btnDialog;
@@ -33,7 +32,6 @@ public class dayActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day);
-        llMain = (LinearLayout) findViewById(R.id.llMain);
         list1 = (ListView) findViewById(R.id.lv1);
         soobshenie = (TextView) findViewById(R.id.soobshenie);
         btnDialog = (Button) findViewById(R.id.btnDialog);

@@ -10,7 +10,7 @@ public class Aprogramm {
     public String[] str2;
     public String[] str3;
     public String[] str4;
-    public String[] menuCreate(){
+    public void sozdanieBazi(){
         List<Programmi> proga = Programmi.listAll(Programmi.class);
         if (proga.size() == 0){
             Upragnenija upr = new Upragnenija("Подтягивания");
@@ -43,8 +43,10 @@ public class Aprogramm {
             days.save();
             progr = new Programmi("Разнообразная");
             progr.save();
-
         }
+    }
+    public String[] menuCreate(){
+
         List<Programmi> progs = Programmi.listAll(Programmi.class);
 
         str = new String[progs.size()];
@@ -67,10 +69,18 @@ public class Aprogramm {
         days.save();
     }
 
-    public void addUprDnja(String stroka, Integer i, Integer j){
+    public void addNewUprDnja(String stroka, Integer i, Integer j){
         Long idDnja = getIdDnja(i,j);
         Upragnenija upr = new Upragnenija(stroka);
         upr.save();
+        DniProgrammi den = DniProgrammi.findById(DniProgrammi.class,idDnja);
+        UpragnenijaDnja uprDnja = new UpragnenijaDnja(upr,den);
+        uprDnja.save();
+    }
+
+    public void addUprDnja(Integer i, Integer j, Integer k){
+        Long idDnja = getIdDnja(i,j);
+        Upragnenija upr = Upragnenija.findById(Upragnenija.class, Long.valueOf(k));
         DniProgrammi den = DniProgrammi.findById(DniProgrammi.class,idDnja);
         UpragnenijaDnja uprDnja = new UpragnenijaDnja(upr,den);
         uprDnja.save();
@@ -98,7 +108,7 @@ public class Aprogramm {
         return str2;
     }
 
-    public String[] spisokUpragnenii(){
+    public String[] spisokUpragneniy(){
         //List<Book> books = Book.find(Book.class, "author = ?", new String{author.getId()});
         //List<DniProgrammi> days = DniProgrammi.find(DniProgrammi.class, "programma = ?", String.valueOf(i));
         List<Upragnenija> uprs = Upragnenija.listAll(Upragnenija.class);

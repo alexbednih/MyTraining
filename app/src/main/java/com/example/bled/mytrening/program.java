@@ -36,10 +36,10 @@ import static com.example.bled.mytrening.R.layout.activity_program;
 public class program extends ActionBarActivity {
 
     Button btnDialog;
+    public TextView soobshenie;
     public String[] str,str2;
     public static int perem=0;
     public static int vibor=0;
-    LinearLayout llMain;
     ListView list1;
     int vtoroeMenu = 0;
     final Aprogramm aprog = new Aprogramm();
@@ -49,8 +49,8 @@ public class program extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(activity_program);
-        llMain = (LinearLayout) findViewById(R.id.llMain);
         list1 = (ListView) findViewById(R.id.lv1);
+        soobshenie = (TextView) findViewById(R.id.soobshenie);
         btnDialog = (Button) findViewById(R.id.btnDialog);
         final View.OnClickListener oclbtnDialog = new View.OnClickListener() {
             @Override
@@ -92,7 +92,14 @@ public class program extends ActionBarActivity {
     }
 
     private void formirSpiska(){
+        soobshenie.setText("");
         str = aprog.menuCreate();
+        if(str[0]==""){
+            soobshenie.setText("Программ нет. Добавьте!!!");
+            list1.setFocusable(false);
+        }
+
+        list1.setFocusable(true);
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, str);
         list1.setAdapter(adapter);
     }

@@ -18,59 +18,48 @@ import android.widget.Toast;
 
 public class uprDayActivity extends ActionBarActivity {
 
-    LinearLayout llMain;
     public ListView list1;
     public Integer viborPunkta;
     public String[] str;
-    public String[] spisok;
     public TextView soobshenie;
     Button btnAddUpr;
     Editable value;
     public Integer viborIzSpiska;
+    Integer vibrannoeUpr;
     final Aprogramm aprog = new Aprogramm();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upr_day);
-        llMain = (LinearLayout) findViewById(R.id.llMain);
         list1 = (ListView) findViewById(R.id.lv1);
-        soobshenie = (TextView) findViewById(R.id.tv1);
+        soobshenie = (TextView) findViewById(R.id.soobshenie);
         btnAddUpr = (Button) findViewById(R.id.btnAddUpr);
 
         final View.OnClickListener oclbtnAddUpr = new View.OnClickListener() {
-
             @Override
             public void onClick(View v){
-                spisok = aprog.spisokUpragnenii();
 
-                final AlertDialog.Builder alert = new AlertDialog.Builder(uprDayActivity.this);
+                final String[] varianti ={"Выбрать из списка", "Добавить новое"};
 
-                alert.setTitle("Добавление упражнения в программу");
-                alert.setMessage("Введите название упражнения программы");
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(uprDayActivity.this);
+                builder1.setTitle("Добавить упражнение"); // заголовок для диалога
 
-                final EditText input = new EditText(uprDayActivity.this);
-                alert.setView(input);
-                alert.setSingleChoiceItems(spisok, -1,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int item) {
-                                //viborIzSpiska=item;
-                            }
-                        });
-                alert.setPositiveButton("ОК", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        value = input.getText();
-                        aprog.addUprDnja(value.toString(), dayActivity.vibor+1, dayActivity.idProg + 1);
-                        formirSpiska();
+                builder1.setItems(varianti, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int item) {
+                        /*Toast.makeText(getApplicationContext(),
+                                "Выбранный кот: " + varianti[item],
+                                Toast.LENGTH_SHORT).show();*/
+                        if (item==0){
+                            vibor1();
+                        }
+                        if (item==1){
+                            vibor2();
+                        }
                     }
                 });
-                alert.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                    }
-                });
-                //alert.create();
-                alert.show();
+                builder1.setCancelable(false);
+                builder1.show();
             }
         };
 
@@ -93,14 +82,77 @@ public class uprDayActivity extends ActionBarActivity {
         str = aprog.spisokUprDayCreate(viborPunkta,dayActivity.idProg+1);
         soobshenie.setText("");
         if(str[0]==""){
-            soobshenie.setText("В данной программе нет дней. Добавьте!!!");
+            soobshenie.setText("В данной дне нет упражнений. Добавьте!!!");
             list1.setFocusable(false);
         }
 
         list1.setFocusable(true);
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, str);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, str);
         list1.setAdapter(adapter);
+    }
+
+    public void vibor1(){
+        final String[] spisok = aprog.spisokUpragneniy();
+
+        AlertDialog.Builder builder2 = new AlertDialog.Builder(uprDayActivity.this);
+        builder2.setTitle("Выберите упражнение")
+                .setCancelable(false)
+
+                        // добавляем одну кнопку для закрытия диалога
+                .setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    }
+                })
+                .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        aprog.addUprDnja(dayActivity.vibor + 1, dayActivity.idProg + 1,vibrannoeUpr+1);
+                        formirSpiska();
+                    }
+                })
+                        // добавляем переключатели
+                .setSingleChoiceItems(spisok, -1,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int item) {
+                                vibrannoeUpr = item;
+                                /*aprog.addUprDnja(dayActivity.vibor + 1, dayActivity.idProg + 1,item+1);
+                                formirSpiska();*/
+                            }
+                        });
+        builder2.show();
+    }
+
+    public void vibor2(){
+        final String[] spisok = aprog.spisokUpragneniy();
+        AlertDialog.Builder builder3 = new AlertDialog.Builder(uprDayActivity.this);
+        builder3.setTitle("Добавление упражнения в программу");
+        builder3.setMessage("Введите название упражнения программы");
+
+        final EditText input = new EditText(uprDayActivity.this);
+        builder3.setView(input);
+        builder3.setSingleChoiceItems(spisok, -1,
+                new DialogInterface.OnClickListener() {
+                    //@Override
+                    public void onClick(DialogInterface dialog,
+                                        int item) {
+                        viborIzSpiska=item;
+                    }
+                });
+        builder3.setPositiveButton("ОК", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                value = input.getText();
+                aprog.addNewUprDnja(value.toString(), dayActivity.vibor + 1, dayActivity.idProg + 1);
+                formirSpiska();
+            }
+        });
+        builder3.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+            }
+        });
+        builder3.show();
     }
 
     @Override
