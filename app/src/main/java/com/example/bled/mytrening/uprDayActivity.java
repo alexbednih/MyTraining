@@ -81,12 +81,12 @@ public class uprDayActivity extends ActionBarActivity {
         viborPunkta++;
         str = aprog.spisokUprDayCreate(viborPunkta,dayActivity.idProg+1);
         soobshenie.setText("");
+        list1.setFocusable(true);
         if(str[0]==""){
             soobshenie.setText("В данной дне нет упражнений. Добавьте!!!");
             list1.setFocusable(false);
         }
 
-        list1.setFocusable(true);
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, str);

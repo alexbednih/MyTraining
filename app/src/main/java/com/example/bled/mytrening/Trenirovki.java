@@ -10,12 +10,12 @@ public class Trenirovki extends SugarRecord<Trenirovki>{
 
     Programmi programma;
     DniProgrammi den_programmi;
-    Integer data_trenirovki;
+    String data_trenirovki;
     Integer vremja_vipolnenija;
 
     public Trenirovki(){}
 
-    public Trenirovki(Programmi programma, DniProgrammi den_programmi, int data_trenirovki, int vremja_vipolnenija){
+    public Trenirovki(Programmi programma, DniProgrammi den_programmi, String data_trenirovki, int vremja_vipolnenija){
 
         this.programma = programma;
         this.den_programmi = den_programmi;

@@ -38,29 +38,9 @@ public class dayActivity extends ActionBarActivity {
         final View.OnClickListener oclbtnDialog = new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                final AlertDialog.Builder alert = new AlertDialog.Builder(dayActivity.this);
-
-                alert.setTitle("Добавление нового дня программы");
-                alert.setMessage("Введите название нового дня программы");
-                final EditText input = new EditText(dayActivity.this);
-                alert.setView(input);
-                alert.setPositiveButton("ОК", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        value = input.getText();
-                        aprog.addNewDayProgramm(value.toString(), program.vibor+1);
-                        formirSpiska();
-                    }
-                });
-
-                alert.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                    }
-                });
-
-                alert.show();
+                dialog();
             }
         };
-
         formirSpiska();
         list1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -90,15 +70,36 @@ public class dayActivity extends ActionBarActivity {
         viborPunkta++;
         str = aprog.menuDayCreate(viborPunkta);
         soobshenie.setText("");
+        list1.setFocusable(true);
         if(str[0]==""){
             soobshenie.setText("В данной программе нет дней. Добавьте!!!");
             list1.setFocusable(false);
         }
 
-        list1.setFocusable(true);
+
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, str);
         list1.setAdapter(adapter);
+    }
+
+    public void dialog(){
+                final AlertDialog.Builder alert = new AlertDialog.Builder(dayActivity.this);
+                alert.setTitle("Добавление нового дня программы");
+                alert.setMessage("Введите название нового дня программы");
+                final EditText input = new EditText(dayActivity.this);
+                alert.setView(input);
+                alert.setPositiveButton("ОК", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        value = input.getText();
+                        aprog.addNewDayProgramm(value.toString(), program.vibor+1);
+                        formirSpiska();
+                    }
+                });
+                alert.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                    }
+                });
+                alert.show();
     }
 
     @Override

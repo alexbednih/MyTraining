@@ -71,6 +71,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.bled.mytrening.dayActivity" />
         </activity>
+        <activity
+            android:name=".uprTrenActivity"
+            android:label="@string/title_activity_upr_tren"
+            android:parentActivityName=".training" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.bled.mytrening.training" />
+        </activity>
     </application>
 
 </manifest>
