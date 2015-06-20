@@ -27,6 +27,7 @@ public class training extends ActionBarActivity {
     Integer vibranniyDen;
     public static int vibor=0;
     public static int perem=0;
+    public static Long trenirovka;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +75,7 @@ public class training extends ActionBarActivity {
                 Intent intent;
                 intent = new Intent(training.this,uprTrenActivity.class);
                 intent.putExtra("viborPunkta", position);
-                vibor=position;
+                vibor=position+1;
                 startActivity(intent);
             }
         });

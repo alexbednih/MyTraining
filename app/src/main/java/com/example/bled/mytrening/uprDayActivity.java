@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -34,7 +35,6 @@ public class uprDayActivity extends ActionBarActivity {
         list1 = (ListView) findViewById(R.id.lv1);
         soobshenie = (TextView) findViewById(R.id.soobshenie);
         btnAddUpr = (Button) findViewById(R.id.btnAddUpr);
-
         final View.OnClickListener oclbtnAddUpr = new View.OnClickListener() {
             @Override
             public void onClick(View v){
