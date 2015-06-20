@@ -10,7 +10,6 @@ public class Atraining {
     String[] str;
     String[] str2;
     String[] str3;
-    Long id;
 
     public String[] spisokTrenirovok(){
 
@@ -39,21 +38,22 @@ public class Atraining {
         Programmi progr = Programmi.findById(Programmi.class, (long) j);
         DniProgrammi den = DniProgrammi.findById(DniProgrammi.class,idDnja);
         String data = getDate();
-        Integer vremja = 0;
+        long vremja = 0;
         Trenirovki tren = new Trenirovki(progr, den, data, vremja);
         tren.save();
     }
+
+
 
     private String getDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         return dateFormat.format(new Date());
     }
 
-    public void addPodhod(Long tren, Long den, Integer viborUpr, Integer kolPovtor){
+    public void addPodhod(Long tren, Long den, Integer viborUpr, Integer kolPovtor, Long vremja){
         Trenirovki trenirovki = Trenirovki.findById(Trenirovki.class,tren);
         Long idUpr = getIdUpr(den, viborUpr);
         Upragnenija upragnenija = Upragnenija.findById(Upragnenija.class, idUpr);
-        Integer vremja = 0;
         Podhodi podhodi = new Podhodi(upragnenija,trenirovki,kolPovtor, vremja);
         podhodi.save();
     }

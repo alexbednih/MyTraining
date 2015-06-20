@@ -2,6 +2,8 @@ package com.example.bled.mytrening;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,6 +31,10 @@ public class podhodiActivity extends ActionBarActivity {
     final Atraining atren = new Atraining();
     Editable value;
     Integer kolPovtor;
+    Chronometer chron;
+    Long vremja;
+    Long vremjaTren;
+    Chronometer chron2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +59,36 @@ public class podhodiActivity extends ActionBarActivity {
             }
         };
 
+        final View.OnClickListener oclbtnEndUpr = new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                chron2.stop();
+                vremjaTren =SystemClock.elapsedRealtime() - chron2.getBase();
+                Intent intent;
+                intent = new Intent(podhodiActivity.this, uprTrenActivity.class);
+                intent.putExtra("vremjaTrenSPodhodami",vremjaTren);
+                Integer povtor = 1;
+                intent.putExtra("povtor",povtor);
+                uprTrenActivity uprTren = new uprTrenActivity();
+                uprTren.povtorOtkr = 1;
+                startActivity(intent);
+            }
+        };
+
+        chron = (Chronometer) findViewById(R.id.chron);
+        chron2 = (Chronometer) findViewById(R.id.chron2);
+        vremjaTren = getIntent().getExtras().getLong("vremjaTren");
+        chron2.setBase(SystemClock.elapsedRealtime() - vremjaTren);
+        chron2.start();
+
         lv1 = (ListView) findViewById(R.id.lv1);
         formirSpiska();
 
+
+
+
         btnAddPodhod.setOnClickListener(oclbtnAddPodhod);
+        btnEndUpr.setOnClickListener(oclbtnEndUpr);
     }
 
     @Override
@@ -66,6 +99,8 @@ public class podhodiActivity extends ActionBarActivity {
     }
 
     public void formirSpiska(){
+        chron.setBase(SystemClock.elapsedRealtime());
+        chron.start();
         str = atren.spisokPodhodov((long) uprTrenActivity.idTren, den, uprTrenActivity.vibor);
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, str);
         lv1.setAdapter(adapter);
@@ -83,7 +118,9 @@ public class podhodiActivity extends ActionBarActivity {
             public void onClick(DialogInterface dialog, int whichButton) {
                 value = input.getText();
                 kolPovtor = Integer.parseInt(value.toString());
-                atren.addPodhod((long)uprTrenActivity.idTren,den,uprTrenActivity.vibor,kolPovtor);
+                chron.stop();
+                vremja = SystemClock.elapsedRealtime() - chron.getBase();
+                atren.addPodhod((long)uprTrenActivity.idTren,den,uprTrenActivity.vibor,kolPovtor, vremja);
                 formirSpiska();
             }
         });

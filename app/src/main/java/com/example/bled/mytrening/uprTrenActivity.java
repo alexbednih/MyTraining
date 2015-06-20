@@ -1,6 +1,7 @@
 package com.example.bled.mytrening;
 
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,6 +27,8 @@ public class uprTrenActivity extends ActionBarActivity {
     public static int vibor=0;
     public static int perem=0;
     long vremja, denn, progg;
+    Integer povtorOtkr=0;
+    Trenirovki tren;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,19 +37,39 @@ public class uprTrenActivity extends ActionBarActivity {
         lv1 = (ListView) findViewById(R.id.lv1);
         btnEnd = (Button) findViewById(R.id.btnEnd);
 
+
         chronometer = (Chronometer) findViewById(R.id.chronometer);
+        povtorOtkr = getIntent().getExtras().getInt("povtor");
+        if (povtorOtkr==1){
+            vremja = getIntent().getExtras().getLong("vremjaTrenSPodhodami");
+            chronometer.stop();
+            chronometer.setBase(SystemClock.elapsedRealtime() - vremja);
+        }
         chronometer.start();
+        if (training.perem==1){
+            viborPunkta=training.vibor;
+        }
+        if (training.perem==0) {
+            viborPunkta = getIntent().getExtras().getInt("viborPunkta");
+            training.perem=1;
+        }
+
+        formirSpiska();
 
         final View.OnClickListener oclbtnEnd = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 chronometer.stop();
-                vremja = chronometer.getBase();
-
+                vremja = SystemClock.elapsedRealtime() - chronometer.getBase();
+                tren.vremja_vipolnenija = vremja;
+                tren.save();
+                Intent intent;
+                intent = new Intent(uprTrenActivity.this, training.class);
+                startActivity(intent);
             }
         };
 
-        formirSpiska();
+
 
         lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -56,8 +79,11 @@ public class uprTrenActivity extends ActionBarActivity {
                 intent.putExtra("viborPunkta", position);
                 intent.putExtra("den", denn);
                 intent.putExtra("programma", progg);
+                chronometer.stop();
+                vremja = SystemClock.elapsedRealtime() - chronometer.getBase();
+                intent.putExtra("vremjaTren",vremja);
                 vibor=position;
-                idTren = training.vibor;
+                idTren = training.vibor+1;
                 startActivity(intent);
             }
         });
@@ -66,15 +92,9 @@ public class uprTrenActivity extends ActionBarActivity {
     }
 
     public void formirSpiska(){
-        if (training.perem==1){
-            viborPunkta=training.vibor;
-        }
-        if (training.perem==0) {
-            viborPunkta = getIntent().getExtras().getInt("viborPunkta");
-            training.perem=1;
-        }
+
         viborPunkta++;
-        Trenirovki tren = Trenirovki.findById(Trenirovki.class,(long)viborPunkta);
+        tren = Trenirovki.findById(Trenirovki.class,(long)viborPunkta);
         Long den = tren.den_programmi.getId();
         denn = den;
         Long prog = tren.programma.getId();

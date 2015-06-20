@@ -31,22 +31,24 @@
         android:id="@+id/btnEndUpr"
         android:layout_below="@+id/btnAddPodhod"/>
 
-    <TextView
-        android:text="19:23"
+    <Chronometer
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/chron"
         android:layout_centerHorizontal="true"
-        android:id="@+id/tv2"
-        android:layout_below="@+id/btnEndUpr" />
+        android:layout_below="@+id/btnEndUpr"  />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lv1"
-        android:layout_below="@+id/tv2" />
+        android:layout_below="@+id/chron" />
 
-
-
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/chron2"
+        android:visibility="invisible" />
 
 
 </RelativeLayout>

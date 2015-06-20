@@ -75,7 +75,7 @@ public class training extends ActionBarActivity {
                 Intent intent;
                 intent = new Intent(training.this,uprTrenActivity.class);
                 intent.putExtra("viborPunkta", position);
-                vibor=position+1;
+                vibor=position;
                 startActivity(intent);
             }
         });

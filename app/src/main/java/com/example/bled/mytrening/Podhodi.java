@@ -10,11 +10,11 @@ public class Podhodi extends SugarRecord<Podhodi>{
     Upragnenija upragnenie;
     Trenirovki trenirovka;
     Integer kol_povtoren;
-    Integer vremja_vipolnenija;
+    Long vremja_vipolnenija;
 
     public Podhodi(){}
 
-    public Podhodi(Upragnenija upragnenie, Trenirovki trenirovka, Integer kol_povtoren, int vremja_vipolnenija){
+    public Podhodi(Upragnenija upragnenie, Trenirovki trenirovka, Integer kol_povtoren, Long vremja_vipolnenija){
 
         this.upragnenie = upragnenie;
         this.trenirovka = trenirovka;
