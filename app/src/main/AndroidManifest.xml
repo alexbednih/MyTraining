@@ -87,6 +87,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.bled.mytrening.uprTrenActivity" />
         </activity>
+        <activity
+            android:name=".pokazStatActivity"
+            android:label="@string/title_activity_pokaz_stat"
+            android:parentActivityName=".statistics" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.bled.mytrening.statistics" />
+        </activity>
     </application>
 
 </manifest>

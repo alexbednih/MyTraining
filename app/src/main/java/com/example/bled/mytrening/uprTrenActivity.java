@@ -38,14 +38,7 @@ public class uprTrenActivity extends ActionBarActivity {
         btnEnd = (Button) findViewById(R.id.btnEnd);
 
 
-        chronometer = (Chronometer) findViewById(R.id.chronometer);
-        povtorOtkr = getIntent().getExtras().getInt("povtor");
-        if (povtorOtkr==1){
-            vremja = getIntent().getExtras().getLong("vremjaTrenSPodhodami");
-            chronometer.stop();
-            chronometer.setBase(SystemClock.elapsedRealtime() - vremja);
-        }
-        chronometer.start();
+
         if (training.perem==1){
             viborPunkta=training.vibor;
         }
@@ -53,7 +46,20 @@ public class uprTrenActivity extends ActionBarActivity {
             viborPunkta = getIntent().getExtras().getInt("viborPunkta");
             training.perem=1;
         }
+        viborPunkta++;
+        tren = Trenirovki.findById(Trenirovki.class,(long)viborPunkta);
+        chronometer = (Chronometer) findViewById(R.id.chronometer);
+        povtorOtkr = getIntent().getExtras().getInt("povtor");
+        if (povtorOtkr==1){
+            vremja = getIntent().getExtras().getLong("vremjaTrenSPodhodami");
+            chronometer.stop();
+            chronometer.setBase(SystemClock.elapsedRealtime() - vremja);
+        }
 
+        if (tren.vremja_vipolnenija!=0){
+            chronometer.setBase(SystemClock.elapsedRealtime() - tren.vremja_vipolnenija);
+        }
+        chronometer.start();
         formirSpiska();
 
         final View.OnClickListener oclbtnEnd = new View.OnClickListener() {
@@ -93,8 +99,7 @@ public class uprTrenActivity extends ActionBarActivity {
 
     public void formirSpiska(){
 
-        viborPunkta++;
-        tren = Trenirovki.findById(Trenirovki.class,(long)viborPunkta);
+
         Long den = tren.den_programmi.getId();
         denn = den;
         Long prog = tren.programma.getId();

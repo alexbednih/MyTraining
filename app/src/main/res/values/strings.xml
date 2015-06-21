@@ -15,5 +15,6 @@
     <string name="title_activity_upr_day">Упражнения дня</string>
     <string name="title_activity_upr_tren">Упражнения тренировки</string>
     <string name="title_activity_podhodi">Подходы упражнения</string>
+    <string name="title_activity_pokaz_stat">Статистика</string>
 
 </resources>
