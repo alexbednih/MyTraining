@@ -27,7 +27,7 @@ public class dayActivity extends ActionBarActivity {
     public static int perem=0;
     public static int vibor=0;
     public static int idProg=0;
-    final Aprogramm aprog = new Aprogramm();
+    final Aday aday = new Aday();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +68,7 @@ public class dayActivity extends ActionBarActivity {
 
 
         viborPunkta++;
-        str = aprog.menuDayCreate(viborPunkta);
+        str = aday.menuDayCreate(viborPunkta);
         soobshenie.setText("");
         list1.setFocusable(true);
         if(str[0]==""){
@@ -91,7 +91,7 @@ public class dayActivity extends ActionBarActivity {
                 alert.setPositiveButton("ОК", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         value = input.getText();
-                        aprog.addNewDayProgramm(value.toString(), program.vibor+1);
+                        aday.addNewDayProgramm(value.toString(), program.vibor+1);
                         formirSpiska();
                     }
                 });

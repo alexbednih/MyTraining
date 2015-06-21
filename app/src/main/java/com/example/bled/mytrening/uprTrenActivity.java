@@ -20,7 +20,7 @@ public class uprTrenActivity extends ActionBarActivity {
     public ListView lv1;
     public Integer viborPunkta;
     Button btnEnd;
-    final Atraining atren = new Atraining();
+    final AuprTren auprTren = new AuprTren();
     Chronometer chronometer;
     TextView soobshenie;
     public static Integer idTren;
@@ -104,7 +104,7 @@ public class uprTrenActivity extends ActionBarActivity {
         denn = den;
         Long prog = tren.programma.getId();
         progg = prog;
-        str = atren.spisokUprDayCreate(den, prog);
+        str = auprTren.spisokUprDayCreate(den, prog);
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, str);
         lv1.setAdapter(adapter);
     }

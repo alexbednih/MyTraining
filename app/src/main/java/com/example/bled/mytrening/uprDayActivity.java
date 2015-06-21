@@ -27,7 +27,7 @@ public class uprDayActivity extends ActionBarActivity {
     Editable value;
     public Integer viborIzSpiska;
     Integer vibrannoeUpr;
-    final Aprogramm aprog = new Aprogramm();
+    final AuprDay auprDay = new AuprDay();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +79,7 @@ public class uprDayActivity extends ActionBarActivity {
 
 
         viborPunkta++;
-        str = aprog.spisokUprDayCreate(viborPunkta,dayActivity.idProg+1);
+        str = auprDay.spisokUprDayCreate(viborPunkta,dayActivity.idProg+1);
         soobshenie.setText("");
         list1.setFocusable(true);
         if(str[0]==""){
@@ -94,7 +94,7 @@ public class uprDayActivity extends ActionBarActivity {
     }
 
     public void vibor1(){
-        final String[] spisok = aprog.spisokUpragneniy();
+        final String[] spisok = auprDay.spisokUpragneniy();
 
         AlertDialog.Builder builder2 = new AlertDialog.Builder(uprDayActivity.this);
         builder2.setTitle("Выберите упражнение")
@@ -107,7 +107,7 @@ public class uprDayActivity extends ActionBarActivity {
                 })
                 .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        aprog.addUprDnja(dayActivity.vibor + 1, dayActivity.idProg + 1,vibrannoeUpr+1);
+                        auprDay.addUprDnja(dayActivity.vibor + 1, dayActivity.idProg + 1,vibrannoeUpr+1);
                         formirSpiska();
                     }
                 })
@@ -126,7 +126,7 @@ public class uprDayActivity extends ActionBarActivity {
     }
 
     public void vibor2(){
-        final String[] spisok = aprog.spisokUpragneniy();
+        final String[] spisok = auprDay.spisokUpragneniy();
         AlertDialog.Builder builder3 = new AlertDialog.Builder(uprDayActivity.this);
         builder3.setTitle("Добавление упражнения в программу");
         builder3.setMessage("Введите название упражнения программы");
@@ -144,7 +144,7 @@ public class uprDayActivity extends ActionBarActivity {
         builder3.setPositiveButton("ОК", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 value = input.getText();
-                aprog.addNewUprDnja(value.toString(), dayActivity.vibor + 1, dayActivity.idProg + 1);
+                auprDay.addNewUprDnja(value.toString(), dayActivity.vibor + 1, dayActivity.idProg + 1);
                 formirSpiska();
             }
         });

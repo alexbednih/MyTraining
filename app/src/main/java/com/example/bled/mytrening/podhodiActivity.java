@@ -28,7 +28,8 @@ public class podhodiActivity extends ActionBarActivity {
     Long den;
     Long prog;
     String [] str;
-    final Atraining atren = new Atraining();
+    final AuprTren auprTren = new AuprTren();
+    final Apodhodi apodhodi = new Apodhodi();
     Editable value;
     Integer kolPovtor;
     Chronometer chron;
@@ -45,7 +46,7 @@ public class podhodiActivity extends ActionBarActivity {
         viborPunkta = getIntent().getExtras().getInt("viborPunkta");
         den = getIntent().getExtras().getLong("den");
         prog = getIntent().getExtras().getLong("programma");
-        str = atren.spisokUprDayCreate(den, prog);
+        str = auprTren.spisokUprDayCreate(den, prog);
         nazvanieUpr = str[viborPunkta];
         tv1.setText("Упражнение - " + nazvanieUpr);
 
@@ -101,7 +102,7 @@ public class podhodiActivity extends ActionBarActivity {
     public void formirSpiska(){
         chron.setBase(SystemClock.elapsedRealtime());
         chron.start();
-        str = atren.spisokPodhodov((long) uprTrenActivity.idTren, den, uprTrenActivity.vibor);
+        str = apodhodi.spisokPodhodov((long) uprTrenActivity.idTren, den, uprTrenActivity.vibor);
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, str);
         lv1.setAdapter(adapter);
     }
@@ -120,7 +121,7 @@ public class podhodiActivity extends ActionBarActivity {
                 kolPovtor = Integer.parseInt(value.toString());
                 chron.stop();
                 vremja = SystemClock.elapsedRealtime() - chron.getBase();
-                atren.addPodhod((long)uprTrenActivity.idTren,den,uprTrenActivity.vibor,kolPovtor, vremja);
+                apodhodi.addPodhod((long)uprTrenActivity.idTren,den,uprTrenActivity.vibor,kolPovtor, vremja);
                 formirSpiska();
             }
         });

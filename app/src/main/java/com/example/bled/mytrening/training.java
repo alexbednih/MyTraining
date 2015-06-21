@@ -23,6 +23,7 @@ public class training extends ActionBarActivity {
     String[] str;
     Atraining atren = new Atraining();
     Aprogramm aprog = new Aprogramm();
+    Aday aday = new Aday();
     Integer vibrannajaProg;
     Integer vibranniyDen;
     public static int vibor=0;
@@ -75,6 +76,8 @@ public class training extends ActionBarActivity {
                 Intent intent;
                 intent = new Intent(training.this,uprTrenActivity.class);
                 intent.putExtra("viborPunkta", position);
+                Integer povtor = 0;
+                intent.putExtra("povtor",povtor);
                 vibor=position;
                 startActivity(intent);
             }
@@ -85,7 +88,7 @@ public class training extends ActionBarActivity {
     }
 
     public void viborOK(Integer i){
-        final String[] spisok = aprog.menuDayCreate(i);
+        final String[] spisok = aday.menuDayCreate(i);
         AlertDialog.Builder builder = new AlertDialog.Builder(training.this);
         builder.setTitle("Выберите день")
                 .setCancelable(false)

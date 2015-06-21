@@ -11,7 +11,7 @@ public class pokazStatActivity extends ActionBarActivity {
     String str;
     String[] str2;
     TextView tv1;
-    Astatistics stat = new Astatistics();
+    ApokazStat apokazStat = new ApokazStat();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +20,7 @@ public class pokazStatActivity extends ActionBarActivity {
         str= viborUpr.toString();
         tv1 = (TextView) findViewById(R.id.tv1);
         tv1.setText(str);
-        str2 = stat.spisokZnachPodhodov(viborUpr);
+        str2 = apokazStat.spisokZnachPodhodov(viborUpr);
 
     }
 
